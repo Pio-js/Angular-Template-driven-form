@@ -1,9 +1,12 @@
 # Angular Template-Driven Form
 
-This form is created using ngForm and bootstrap
+This form is created using ngForm and bootstrap.
+
 There is a validation for the input fields and the submit button.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
+
+![angular_template_driven_form](https://user-images.githubusercontent.com/71008079/226994416-b3a58844-1fc9-40df-a605-a5b442dbc2c4.png)
 
 ## Development server
 
