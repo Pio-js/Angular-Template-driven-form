@@ -1,6 +1,8 @@
-# Angular Template-Driven Form
+# Angular Template-Driven Form vs Reactive Form
 
-This form is created using ngForm and bootstrap.
+This form is created using FormControl, NgForm, FormGroup, Validators, FormArray, FormBuilder.
+
+Bootstrap for layout.
 
 There is a validation for the input fields and the submit button.
 
