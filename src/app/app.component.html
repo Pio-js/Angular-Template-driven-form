@@ -1,5 +1,6 @@
 <div class="container mt-5">
   <div class="form-area">
+    <h1>Template Driven Form</h1>
     <!-- 'f' is the template variable -->
     <!-- ngForm is a directive used to validate the form - you must import FormsModule in 'app.module.ts'-->
     <!-- NgForm creates a top-level FormGroup instance -->
@@ -13,7 +14,7 @@
         <input 
         type="text" 
         placeholder="Full Name" 
-        class="form-control is-invalid" 
+        class="form-control" 
         name="fullName" 
         ngModel
         #fullName="ngModel"
@@ -75,6 +76,115 @@
       </div>
   
       <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+    </form>
+    <br><br>
+
+
+    <!-- REACTIVE FORM -->
+    <h1>Reactive Form</h1>
+    <!-- [formGroup] is binding to the variable 'form' in app.components.ts file. -->
+    <form [formGroup]="form" (ngSubmit)="onSubmitR()">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input 
+        type="text" 
+        placeholder="Full Name" 
+        class="form-control" 
+        name="fullName"
+        formControlName="fullName"
+        [ngClass]="{'is-invalid': fullNameR.touched && fullNameR.invalid}"
+        >
+        
+        <div class="alert alert-danger" *ngIf="fullNameR.touched && fullNameR.invalid">
+          <div *ngIf="fullNameR.errors?.required">Full name is required!</div>
+          <div *ngIf="fullNameR.errors?.minlength">Full name must be at least 5 characters long!</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Email</label>
+        <input
+        type="email"
+        placeholder="Email"
+        class="form-control"
+        name="email"
+        formControlName="email"
+        [ngClass]="{'is-invalid': emailR.touched && emailR.invalid}"
+        >
+
+        <div class="alert alert-danger" *ngIf="emailR.touched && emailR.invalid">
+          <div *ngIf="emailR.errors?.required">Email is required!</div>
+          <div *ngIf="emailR.errors?.pattern">Invalid email!</div>
+        </div>
+      </div>
+  
+      <!-- Contact details nested Form Group -->
+      <div formGroupName="contactDetails">
+        <div class="form-group">
+          <label>Address</label>
+          <textarea
+          cols="30"
+          rows="10"
+          placeholder="Address"
+          class="form-control"
+          name="address"
+          formControlName="address"
+          [ngClass]="{'is-invalid': addressR.touched && addressR.invalid}"
+          ></textarea>
+  
+          <div class="alert alert-danger" *ngIf="addressR.touched && addressR.invalid">
+            <div *ngIf="addressR.errors?.required">Address is required!</div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label>Shipping Address</label>
+          <textarea
+          cols="30"
+          rows="10"
+          placeholder="Shipping Address"
+          class="form-control"
+          name="shippingAddress"
+          formControlName="shippingAddress"
+          [ngClass]="{'is-invalid': shippingAddressR.touched && shippingAddressR.invalid}"
+          ></textarea>
+  
+          <div class="alert alert-danger" *ngIf="shippingAddressR.touched && shippingAddressR.invalid">
+            <div *ngIf="shippingAddressR.errors?.required">Shipping address is required!</div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label>Contact number</label>
+          <input
+          type="text"
+          placeholder="Contact number"
+          class="form-control"
+          name="contactNumber"
+          formControlName="contactNumber"
+          [ngClass]="{'is-invalid': contactNumberR.touched && contactNumberR.invalid}"
+          >
+  
+          <div class="alert alert-danger" *ngIf="contactNumberR.touched && contactNumberR.invalid">
+            <div *ngIf="contactNumberR.errors?.required">Contact number!</div>
+            <div *ngIf="contactNumberR.errors?.pattern">Invalid contact number!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Skills</label>
+        <input type="text" class="form-control" #skill (keyup.enter)="addSkills(skill)">
+
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let skill of skillsR.controls; let i = index">
+            {{skill.value}}
+            <a class="btn btn-sm btn-danger" (click)="removeSkills(i)">X</a>
+          </li>
+        </ul>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
     </form>
   </div>
 </div>
