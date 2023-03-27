@@ -174,7 +174,7 @@
 
       <div class="form-group">
         <label>Skills</label>
-        <input type="text" class="form-control" #skill (keyup.enter)="addSkills(skill)">
+        <input type="text" placeholder="Add skills and press enter" class="form-control" #skill (keyup.enter)="addSkills(skill)">
 
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let skill of skillsR.controls; let i = index">
@@ -187,4 +187,9 @@
       <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
     </form>
   </div>
+
 </div>
+<br><br>
+
+<!-- Form validation -->
+<app-user-form></app-user-form>

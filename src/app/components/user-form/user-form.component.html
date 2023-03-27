@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Another Reactive Form using Validator</h1>
+    <form [formGroup]="form" (submit)="onSubmit()">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" placeholder="Try to add spaces before submitting" class="form-control" formControlName="username">
+            <div *ngIf="fc.username.errors?.required">
+                <div class="alert alert-danger" *ngIf="fc.username.touched && fc.username.invalid">Username is required!</div>
+            </div>
+    
+            <div *ngIf="fc.username.errors?.minlength">
+                <div class="alert alert-danger" *ngIf="fc.username.touched && fc.username.invalid">Username must be at least 5 characters long!</div>
+            </div>
+
+            <div *ngIf="fc.username.errors?.noSpaceValidator">
+                <div class="alert alert-danger" *ngIf="fc.username.touched && fc.username.invalid">Username cannot contain spaces!</div>
+            </div>
+        </div>
+        <div class="form group">
+            <label>Password</label>
+            <input type="text" class="form-control" formControlName="password">
+            <div *ngIf="fc.password.errors?.required">
+                <div class="alert alert-danger" *ngIf="fc.password.touched && fc.password.invalid">Password is required!</div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+    </form>
+</div>
